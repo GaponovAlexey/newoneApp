@@ -1,11 +1,14 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export default function Todo({ value }) {
+export default function Todo({ value, goOpenTodo }) {
 	return (
-		<View>
-			<Text style={ styles.text }>{ value }</Text>
-		</View>
+		<TouchableOpacity
+			onPress={ () => goOpenTodo(value.id) }
+
+		>
+			<Text style={ styles.text }>{ value.title }</Text>
+		</TouchableOpacity>
 	)
 }
 

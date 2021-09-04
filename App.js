@@ -5,7 +5,7 @@ import MainApp from './src/screen/MainApp';
 import TodoOpen from './src/screen/TodoOpen';
 
 export default function App() {
-  const [todoId, setTodoId] = useState('2')
+  const [todoId, setTodoId] = useState(null)
   const [todos, setTodos] = useState([
     { id: '1', title: 'my favorite App' },
     { id: '2', title: 'my macbook pro' },
@@ -18,14 +18,38 @@ export default function App() {
     }, ...e])
   }
 
+  let corectTodo = (id, title) => {
+    setTodos(old => old.map(todo => {
+      if (todo.id = id) {
+        todo.title = title
+      }
+      return todo
+    }
+    ))
+  }
+
 
   let content = (
-    <MainApp todos={ todos } addTodo={ addTodo } />
+    <MainApp
+      todos={ todos }
+      addTodo={ addTodo }
+      goOpenTodo={ setTodoId }
+    />
   )
 
-  if(todoId) {
+  let deletTodo = id => {
+    setTodos(e => e.filter(d => d.id !== id))
+  }
+  if (todoId) {
+    const todoIDm = todos.find(e => e.id = todoId)
     content = <TodoOpen
-      BackTodo={ () => setTodoId(null)}
+      value={ todoIDm }
+      corectTodo={ corectTodo }
+      BackTodo={ () => setTodoId(null) }
+      deletTodo={ () => {
+        deletTodo(todoIDm.id)
+        setTodoId(null)
+      } }
     />
   }
 
