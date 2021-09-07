@@ -24,6 +24,7 @@ export default function TodoOpen({ BackTodo, value, corectTodo, deletTodo }) {
 		</View>
 	)
 
+	
 	if (modalID) {
 		contents = <ModalWin
 			onOpen={ () => setmodalID(true) }
