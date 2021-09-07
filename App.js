@@ -3,8 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import Navbar from './src/component/Navbar';
 import MainApp from './src/screen/MainApp';
 import TodoOpen from './src/screen/TodoOpen';
+import * as Font from 'expo-font';
+import { useFonts } from 'expo-font';
 
 export default function App() {
+
+  const [loaded] = useFonts({
+    JBRegular: require('./assets/fonts/JetBrainsMono-Regular.ttf'),
+    JBBold: require('./assets/fonts/JetBrainsMono-Bold.ttf'),
+  });
+  
   const [todoId, setTodoId] = useState(null)
   const [todos, setTodos] = useState([
     { id: '1', title: 'my favorite App' },

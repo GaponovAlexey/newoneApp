@@ -7,9 +7,11 @@ export default function Todo({ value, goOpenTodo }) {
 			onPress={ () => goOpenTodo(value.id) }
 
 		>
-			<Text style={ styles.text }>{ value.title }</Text>
+			<View>
+				<Text style={ { ...styles.text, fontFamily: 'JBBold', fontSize: 15  } } >{ value.title }</Text>
+			</View>
 		</TouchableOpacity>
-	)
+	) 
 }
 
 const styles = StyleSheet.create({
