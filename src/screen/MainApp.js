@@ -3,12 +3,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native'
 import Todo from '../component/Todo'
 import TopTodo from '../component/TopTodo'
 
-export default function MainApp({ todos, addTodo, goOpenTodo }) {
-
-
-
-
-	
+export default function MainApp({ todos, addTodo, goOpenTodo }) {	
 	return (
 		<View >
 			<TopTodo addTodo={ addTodo } />

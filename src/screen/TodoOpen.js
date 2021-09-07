@@ -1,33 +1,39 @@
 import React, { useState } from 'react'
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
-import { ModalWin } from '../component/ModalWin.js'
+import ModalWin from '../component/ModalWin'
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
-export default function TodoOpen({ BackTodo, value, corectTodo, deletTodo }) {
+export default function TodoOpen({ BackTodo, value, corect, deletTodo, back }) {
 	const [todo, setTodo] = useState(value)
-	const [modalID, setmodalID] = useState(false)
+	const [modalID, setModa] = useState(false)
+
+	const oncorect = (title) => {
+		corect(value.id, title)
+		setModa(false)
+	}
 
 	let contents = (
 		<View>
 			<View style={ styles.cont }>
-				<TextInput
-					value={ todo.title }
-					onChangeText={ setTodo }
-					style={ styles.inp }
-					placeholder="text"
-				/>
-				<Button color='#000' title='...' onPress={ () => setmodalID(true) } />
+				<Text style={ styles.inp }>{ value.title }</Text>
+				<AntDesign name='edit' size={ 35 } onPress={ () => setModa(true) } />
 			</View>
 			<View style={ styles.but } >
-				<Button title='you back' onPress={ BackTodo } />
-				<Button title='delet' onPress={ () => deletTodo(value.id) } />
+				<Ionicons name='md-chevron-back-circle-sharp' size={ 35 } onPress={ BackTodo } />
+				<MaterialCommunityIcons name='delete-forever-outline' size={ 35 } onPress={ () => deletTodo(value.id) } />
 			</View>
 		</View>
 	)
 
-	
+
 	if (modalID) {
 		contents = <ModalWin
-			onOpen={ () => setmodalID(true) }
+			title={ todo.title }
+			back={ () => setModa(false) }
+			visible={ modalID }
+			corect={ oncorect }
 
 		/>
 	}
@@ -43,11 +49,14 @@ const styles = StyleSheet.create({
 	cont: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		marginBottom: 4,
+		marginBottom: 5,
 	},
 	inp: {
-		borderBottomWidth: 2,
+		backgroundColor: '#eee',
+		borderRadius: 5,
+		fontSize: 27,
 		width: '89%',
+		justifyContent: 'flex-end',
 	},
 	but: {
 		flexDirection: 'row',

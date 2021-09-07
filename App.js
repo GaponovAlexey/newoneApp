@@ -8,7 +8,7 @@ export default function App() {
   const [todoId, setTodoId] = useState(null)
   const [todos, setTodos] = useState([
     { id: '1', title: 'my favorite App' },
-    { id: '2', title: 'my macbook pro' },
+    { id: '2', title: 'my macbook pro' }
   ])
 
   const addTodo = title => {
@@ -19,13 +19,13 @@ export default function App() {
   }
 
   let corectTodo = (id, title) => {
+    setTodoId(null)
     setTodos(old => old.map(todo => {
-      if (todo.id = id) {
+      if (todo.id === id) {
         todo.title = title
       }
       return todo
-    }
-    ))
+    }))
   }
 
 
@@ -39,17 +39,15 @@ export default function App() {
 
   let deletTodo = id => {
     setTodos(e => e.filter(d => d.id !== id))
+    setTodoId(null)
   }
   if (todoId) {
-    const todoIDm = todos.find(e => e.id = todoId)
+    const todoIDm = todos.find(e => e.id == todoId)
     content = <TodoOpen
       value={ todoIDm }
-      corectTodo={ corectTodo }
+      corect={ corectTodo }
       BackTodo={ () => setTodoId(null) }
-      deletTodo={ () => {
-        deletTodo(todoIDm.id)
-        setTodoId(null)
-      } }
+      deletTodo={ () => { deletTodo(todoIDm.id) } }
     />
   }
 

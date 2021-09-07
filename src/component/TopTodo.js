@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 export default function TopTodo({ value, addTodo }) {
 	const [todo, setTodo] = useState(value)
+
+
+
 	return (
 		<View style={ styles.cont } >
 			<TextInput
@@ -11,7 +16,7 @@ export default function TopTodo({ value, addTodo }) {
 				onChangeText={ setTodo }
 				placeholder='your todo'
 			/>
-			<Button title='send' onPress={ () => {
+			<MaterialCommunityIcons name='file-send-outline' size={25} onPress={ () => {
 				if (todo.trim()) {
 					addTodo(todo)
 					setTodo('')
@@ -29,6 +34,6 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		borderBottomWidth: 2,
-		width: '70%',
+		width: '90%',
 	}
 })
