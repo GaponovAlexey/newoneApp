@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import AppButton from './Ui/AppButton'
 
 export default function Todo({ value, goOpenTodo }) {
 	return (
@@ -8,7 +9,7 @@ export default function Todo({ value, goOpenTodo }) {
 
 		>
 			<View>
-				<Text style={ styles.text } >{ value.title }</Text>
+				<AppButton style={ styles.text } >{ value.title }</AppButton>
 			</View>
 		</TouchableOpacity>
 	)
@@ -21,6 +22,5 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		marginBottom: 3,
 		elevation: 2,
-		fontFamily: 'JBBold',
 	}
 })

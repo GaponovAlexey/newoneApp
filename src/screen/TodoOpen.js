@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, Dimensions, StyleSheet, Text, TextInput, View } from 'react-native'
 import ModalWin from '../component/ModalWin'
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import AppButton from '../component/Ui/AppButton';
 
 export default function TodoOpen({ BackTodo, value, corect, deletTodo, back }) {
 	const [todo, setTodo] = useState(value)
@@ -17,7 +18,7 @@ export default function TodoOpen({ BackTodo, value, corect, deletTodo, back }) {
 	let contents = (
 		<View>
 			<View style={ styles.cont }>
-				<Text style={ styles.inp }>{ value.title }</Text>
+				<AppButton style={ styles.inp }>{ value.title }</AppButton>
 				<AntDesign name='edit' size={ 35 } onPress={ () => setModa(true) } />
 			</View>
 			<View style={ styles.but } >
@@ -52,14 +53,14 @@ const styles = StyleSheet.create({
 		marginBottom: 5,
 	},
 	inp: {
-		backgroundColor: '#eee',
-		borderRadius: 5,
-		fontSize: 27,
-		width: '89%',
-		justifyContent: 'flex-end',
+		borderBottomWidth: 1,
+		fontSize: 30,
 	},
 	but: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+		//width: Dimensions.get('window').width / 3
+		//width: Dimensions.get('window').width / 
+		
 	}
 })
