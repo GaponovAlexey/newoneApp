@@ -6,18 +6,22 @@ import TodoOpen from './src/screen/TodoOpen';
 import * as Font from 'expo-font';
 import { useFonts } from 'expo-font';
 
-export default function App() {
 
-  const [loaded] = useFonts({
-    JBRegular: require('./assets/fonts/JetBrainsMono-Regular.ttf'),
-    JBBold: require('./assets/fonts/JetBrainsMono-Bold.ttf'),
-  });
-  
+
+export default function App() {
   const [todoId, setTodoId] = useState(null)
   const [todos, setTodos] = useState([
     { id: '1', title: 'my favorite App' },
     { id: '2', title: 'my macbook pro' }
   ])
+
+  const [loaded] = useFonts({
+    'JBRegular': require('./assets/fonts/JetBrainsMono-Regular.ttf'),
+    'JBBold': require('./assets/fonts/JetBrainsMono-Bold.ttf'),
+  });
+  if (!loaded) {
+    return null;
+  }
 
   const addTodo = title => {
     setTodos(e => [{

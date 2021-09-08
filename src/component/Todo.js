@@ -8,10 +8,10 @@ export default function Todo({ value, goOpenTodo }) {
 
 		>
 			<View>
-				<Text style={ { ...styles.text, fontFamily: 'JBBold', fontSize: 15  } } >{ value.title }</Text>
+				<Text style={ styles.text } >{ value.title }</Text>
 			</View>
 		</TouchableOpacity>
-	) 
+	)
 }
 
 const styles = StyleSheet.create({
@@ -21,5 +21,6 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		marginBottom: 3,
 		elevation: 2,
+		fontFamily: 'JBBold',
 	}
 })
