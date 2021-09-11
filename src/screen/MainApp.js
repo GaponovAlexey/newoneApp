@@ -13,9 +13,9 @@ export default function MainApp({ todos, addTodo, goOpenTodo }) {
 		Dimensions.addEventListener('change', update)
 		return () => {
 			Dimensions.removeEventListener('change', update)
-
 		}
 	})
+
 	return (
 		<View style={ { width: diviceWidth } } >
 			<TopTodo addTodo={ addTodo } />

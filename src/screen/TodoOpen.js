@@ -15,6 +15,7 @@ export default function TodoOpen({ BackTodo, value, corect, deletTodo, back }) {
 		setModa(false)
 	}
 
+
 	let contents = (
 		<View>
 			<View style={ styles.cont }>
