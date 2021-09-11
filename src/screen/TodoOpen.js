@@ -1,20 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Dimensions, StyleSheet, Text, TextInput, View } from 'react-native'
 import ModalWin from '../component/ModalWin'
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import AppButton from '../component/Ui/AppButton';
+import { TodoContext } from '../context/todo/todoContext';
+import { ScreenContext } from '../context/screen/screenContext';
 
-export default function TodoOpen({ BackTodo, value, corect, deletTodo, back }) {
-	const [todo, setTodo] = useState(value)
+export default function TodoOpen() {
+	const { todos, removeTodo, updateTodo } = useContext(TodoContext)
+	const { todoId, changeScreen } = useContext(ScreenContext)
 	const [modalID, setModa] = useState(false)
 
-	const oncorect = (title) => {
-		corect(value.id, title)
-		setModa(false)
-	}
-
+	const value = todos.find(e => e.id == todoId)
 
 	let contents = (
 		<View>
@@ -23,19 +22,26 @@ export default function TodoOpen({ BackTodo, value, corect, deletTodo, back }) {
 				<AntDesign name='edit' size={ 35 } onPress={ () => setModa(true) } />
 			</View>
 			<View style={ styles.but } >
-				<Ionicons name='md-chevron-back-circle-sharp' size={ 35 } onPress={ BackTodo } />
-				<MaterialCommunityIcons name='delete-forever-outline' size={ 35 } onPress={ () => deletTodo(value.id) } />
+				<Ionicons name='md-chevron-back-circle-sharp' size={ 35 } onPress={ () => changeScreen(null) } />
+				<MaterialCommunityIcons name='delete-forever-outline' size={ 35 } onPress={ () => {
+					removeTodo(value.id)
+					changeScreen(null)
+				} } />
 			</View>
 		</View>
 	)
 
+	const backSave = (title) => {
+		updateTodo(value.id, title),
+		setModa(false)
+	}
 
 	if (modalID) {
 		contents = <ModalWin
-			title={ todo.title }
+			title={ value.title }
 			back={ () => setModa(false) }
 			visible={ modalID }
-			corect={ oncorect }
+			corect={ backSave }
 
 		/>
 	}
@@ -62,6 +68,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		//width: Dimensions.get('window').width / 3
 		//width: Dimensions.get('window').width / 
-		
+
 	}
 })

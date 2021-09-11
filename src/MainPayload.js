@@ -8,39 +8,13 @@ import { ScreenContext } from './context/screen/screenContext';
 
 
 export default function MainPayload() {
-	//const [todoId, setTodoId] = useState(null)
-	const { todos, addTodo, updateTodo, removeTodo } = useContext(TodoContext)
-	const {todoId, } = useContext(ScreenContext)
-
-
-	let content = (
-		<MainApp
-			todos={ todos }
-			addTodo={ addTodo }
-			//goOpenTodo={ setTodoId }
-		/>
-	)
-
-
-	if (todoId) {
-		const todoIDm = todos.find(e => e.id == todoId)
-		content = <TodoOpen
-			value={ todoIDm }
-			corect={ updateTodo }
-			BackTodo={ () => setTodoId(null) }
-			deletTodo={ () => {
-				removeTodo(todoIDm.id)
-				setTodoId(null)
-			} }
-		/>
-	}
-
+	const { todoId } = useContext(ScreenContext)
 
 	return (
 		<View>
 			<Navbar />
 			<View style={ styles.container }>
-				{ content }
+				{ todoId ? <TodoOpen /> : <MainApp /> }
 			</View>
 		</View>
 	)
