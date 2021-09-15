@@ -9,7 +9,7 @@ import { TodoContext } from '../context/todo/todoContext';
 import { ScreenContext } from '../context/screen/screenContext';
 
 export default function TodoOpen() {
-	const { todos, removeTodo, updateTodo } = useContext(TodoContext)
+	const { todos, clearError, updateTodo } = useContext(TodoContext)
 	const { todoId, changeScreen } = useContext(ScreenContext)
 	const [modalID, setModa] = useState(false)
 
@@ -24,7 +24,7 @@ export default function TodoOpen() {
 			<View style={ styles.but } >
 				<Ionicons name='md-chevron-back-circle-sharp' size={ 35 } onPress={ () => changeScreen(null) } />
 				<MaterialCommunityIcons name='delete-forever-outline' size={ 35 } onPress={ () => {
-					removeTodo(value.id)
+					clearError(value.id)
 					changeScreen(null)
 				} } />
 			</View>
