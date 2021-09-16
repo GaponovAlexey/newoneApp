@@ -74,6 +74,7 @@ export default TodoState = ({ children }) => {
 		dispatch({ type: CLEAR_ERROR, id })
 	}
 
+	
 	return (
 		<TodoContext.Provider
 			value={ {
