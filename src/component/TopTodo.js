@@ -3,8 +3,8 @@ import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
-export default function TopTodo({ value, addTodo }) {
-	const [todo, setTodo] = useState(value)
+export default function TopTodo({  addTodo }) {
+	const [todo, setTodo] = useState('')
 
 
 

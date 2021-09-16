@@ -1,13 +1,15 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import AppButton from './Ui/AppButton'
 
 export default function Todo({ value, goOpenTodo }) {
 	return (
 		<TouchableOpacity
 			onPress={ () => goOpenTodo(value.id) }
-
 		>
-			<Text style={ styles.text }>{ value.title }</Text>
+			<View style={ styles.block } >
+				<AppButton style={ styles.text } >{ value.title }</AppButton>
+			</View>
 		</TouchableOpacity>
 	)
 }
@@ -15,9 +17,9 @@ export default function Todo({ value, goOpenTodo }) {
 const styles = StyleSheet.create({
 	text: {
 		padding: 10,
-		backgroundColor: '#ccc',
-		borderRadius: 5,
-		marginBottom: 3,
-		elevation: 2,
-	}
+		backgroundColor: '#eee',
+		borderRadius: 3,
+		marginBottom: 4,
+		elevation: 1,
+	},
 })
