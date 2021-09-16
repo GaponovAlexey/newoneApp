@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import Todo from '../component/Todo'
 import TopTodo from '../component/TopTodo'
+import { ScreenContext } from '../context/changeScreen/screenContext'
+import { TodoContext } from '../context/todo/todoContext'
 
-export default function MainApp({ todos, addTodo, goOpenTodo }) {	
+export default function MainApp() {	
+	const { todoId, setTodoId } = useContext(ScreenContext)
+	const { todos, addTodo } = useContext(TodoContext)
 	return (
 		<View >
 			<TopTodo addTodo={ addTodo } />
@@ -12,7 +16,7 @@ export default function MainApp({ todos, addTodo, goOpenTodo }) {
 				renderItem={ ({ item }) =>
 					<Todo
 						value={ item }
-						goOpenTodo={ goOpenTodo }
+						goOpenTodo={ setTodoId }
 					/> }
 				keyExtractor={ item => item.id }
 			/>
